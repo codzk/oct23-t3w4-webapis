@@ -51,7 +51,8 @@ async function putDataOnPage(dataToDisplay){
     let imageContainer = document.getElementsByClassName("pokemonImage")[0];
     let imageElement = imageContainer.getElementsByTagName("IMG")[0];
 
-    let shinyResult = Math.floor(Math.random() * 4) + 1;
+    let oddsUpperLimit = 4;
+    let shinyResult = Math.floor(Math.random() * oddsUpperLimit) + 1;
 
     if (shinyResult == 1){
         imageElement.src = dataToDisplay.sprites.front_shiny;
@@ -62,6 +63,16 @@ async function putDataOnPage(dataToDisplay){
 
 
     // document.querySelector(".pokemonImage img").src = dataToDisplay.sprites.front_default;
+
+    let cryUrl = dataToDisplay.cries.latest;
+    let pokemonAudioElement = document.querySelector(".pokemonCry audio")
+    pokemonAudioElement.src = cryUrl;
+
+    let pokemonAudioPlayButton = document.querySelector(".pokemonCry")
+    pokemonAudioPlayButton.addEventListener("click", () => {
+        pokemonAudioElement.volume = 0.1;
+        pokemonAudioElement.play();
+    })
 
 
 
