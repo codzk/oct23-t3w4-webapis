@@ -9,9 +9,9 @@
 
 ## To-Do
 
-- Cries
-- Shiny chance
-- Team generator
-    - select number of Pokemon to generate in the team
+- [] Cries
+- [x] Shiny chance
+- [] Team generator
+    - [] select number of Pokemon to generate in the team
 
-- Fetch with headers
+- [] Fetch with headers
