@@ -87,7 +87,65 @@ async function getAndDisplayPokemonData(){
     putDataOnPage(data);
 }
 
-document.getElementById("create-encounter").addEventListener("click", getAndDisplayPokemonData);
+document.getElementById("create-encounter").addEventListener("click", getAndDisplayPokemonData)
 
 // let pokemonButton = document.getElementById("create-encounter");
 // pokemonButton.addEventListener("click", getAndDisplayPokemonData);
+
+
+async function generateTeamData(){
+    
+    
+    // let teamArray = [];
+    // for (let index = 0; index < 6; index++) {
+    //     let data = await getPokemonData();
+    //     teamArray.push(data);
+        
+    // }
+
+    // teamArray = promiseAllResult;
+
+    let promiseAllResult = await Promise.all([
+        getPokemonData(),
+        getPokemonData(),
+        getPokemonData(),
+        getPokemonData(),
+        getPokemonData(),
+        getPokemonData(),
+        
+
+    ])
+
+    
+
+    return promiseAllResult;
+
+}
+
+async function showTeamData(teamToDisplay){
+    let teamDisplaySection = document.getElementById("team-display");
+    teamDisplaySection.innerHTML = "";
+
+    teamToDisplay.forEach((pokemon) => {
+
+        let newPokemonCard = document.createElement("div");
+
+        let pokemonNameTitle = document.createElement("h3");
+        pokemonNameTitle.textContent = pokemon.name;
+
+        newPokemonCard.appendChild(pokemonNameTitle);
+
+        teamDisplaySection.appendChild(newPokemonCard);
+
+    });
+
+
+}
+
+async function getAndShowTeamData(){
+    let teamData = await generateTeamData();
+    console.log(teamData);
+    showTeamData(teamData);
+}
+
+document.getElementById("create-team").addEventListener("click", getAndShowTeamData)
