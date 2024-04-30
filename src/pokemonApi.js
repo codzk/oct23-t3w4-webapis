@@ -168,12 +168,30 @@ async function showTeamData(teamToDisplay){
         pokemonAudioPlayButton.addEventListener("click", () => {
             pokemonAudioElement.volume = 0.1;
             pokemonAudioElement.play();
-    })
+    });
 
-    pokemonAudioPlayButton.appendChild(pokemonAudioElement);
-    newPokemonCard.appendChild(pokemonAudioPlayButton);
+        pokemonAudioPlayButton.appendChild(pokemonAudioElement);
+        newPokemonCard.appendChild(pokemonAudioPlayButton);
 
-            // Apply all content to page
+        // Pokemon image and shiny chance
+        let imageContainer = document.createElement("div");
+        let imageElement = document.createElement("img");
+        imageContainer.appendChild(imageElement);
+    
+        let oddsUpperLimit = 4;
+        let shinyResult = Math.floor(Math.random() * oddsUpperLimit) + 1;
+    
+        if (shinyResult == 1){
+            imageElement.src = pokemon.sprites.front_shiny;
+            console.log("Shiny Pokemon found!");
+        }else{
+            imageElement.src = pokemon.sprites.front_default;
+            
+        }
+
+        newPokemonCard.appendChild(imageContainer);
+
+        // Apply all content to page
 
         teamDisplaySection.appendChild(newPokemonCard);
 
